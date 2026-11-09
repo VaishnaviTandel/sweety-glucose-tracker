@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const pool = require('./db/pool');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.get('/health', async (req, res) => {
     res.status(500).json({ status: 'error', message: 'Database connection failed' });
   }
 });
+
+app.use('/auth', authRoutes);
 
 module.exports = app;
