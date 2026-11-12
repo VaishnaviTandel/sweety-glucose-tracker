@@ -1,20 +1,19 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import AuthPage from './pages/AuthPage';
+import Dashboard from './pages/Dashboard';
+import Reports from './pages/Reports';
+import Navbar from './components/Navbar';
 
-function Protected({ children }) {
+function ProtectedLayout() {
   const { user, loading } = useAuth();
   if (loading) return <p className="center">Loading...</p>;
-  return user ? children : <Navigate to="/login" replace />;
-}
-
-function TempHome() {
-  const { user, logout } = useAuth();
+  if (!user) return <Navigate to="/login" replace />;
   return (
-    <div className="container">
-      <h2>Welcome, {user.name}</h2>
-      <button onClick={logout}>Log out</button>
-    </div>
+    <>
+      <Navbar />
+      <Outlet />
+    </>
   );
 }
 
@@ -23,7 +22,10 @@ export default function App() {
     <Routes>
       <Route path="/login" element={<AuthPage mode="login" />} />
       <Route path="/signup" element={<AuthPage mode="signup" />} />
-      <Route path="/" element={<Protected><TempHome /></Protected>} />
+      <Route element={<ProtectedLayout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/reports" element={<Reports />} />
+      </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
