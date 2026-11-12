@@ -88,4 +88,33 @@ Errors use one shape: `{ "error": { "code", "field", "message" } }`.
 - A proper migration tool instead of a single `schema.sql`.
 
 ## Screenshots / demo
-See the `docs/` folder and the recording linked in the submission email.
+## Screenshots
+
+### Login
+![Login page](<docs/1. Login Page.png>)
+
+### Dashboard (4 slots per day)
+![Dashboard](<docs/2. Dashboard.png>)
+
+### Validation errors
+Blank or out-of-range value:
+![Value error](<docs/3. Adding Values- error.png>)
+
+Slot already filled for that date:
+![Duplicate slot error](<docs/4. changing timeslot which is already filled -error.png>)
+
+Maximum 4 readings per day:
+![Max 4 per day](<docs/5. one day can have only 4 values each.png>)
+
+### Edit and delete
+![Day with all 4 readings](<docs/6. All 4 reading contained date.png>)
+![Delete working](<docs/9. Delete function working.png>)
+![After deleting](<docs/10. After deleting.png>)
+
+### Reports
+Daily, month-to-date and previous month:
+![Report of one day](<docs/7. Report of one day.png>)
+![Report of a day with all 4 slots](<docs/8. Report of all 4 slot filled day.png>)
+
+Empty state:
+![Empty report](<docs/11. Report Empty.png>)
